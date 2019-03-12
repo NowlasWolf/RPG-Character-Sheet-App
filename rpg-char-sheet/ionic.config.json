@@ -1,5 +1,7 @@
 {
   "name": "RPG Char Sheet",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
