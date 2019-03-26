@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'character',
     pathMatch: 'full'
   },
   { path: 'character', loadChildren: './character/character.module#CharacterPageModule' },
