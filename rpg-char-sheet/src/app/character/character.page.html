@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Character List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+   <ion-list class="accordion" *ngFor= "let item of items; let i=index"> <!--> Controls everything in the accordion list as a whole <!-->
+    <ion-item class="accordionHeader"  lines="none"  (click)="toggleGroup(i)" ngClass="{active: isGroupShown(i)"> 
+    <!--> accordionHeader is in charge of creating each item for the list [ngClass]="{active: isGroupShown(i)}"<!-->
+      <ion-label class= "accordionLabel">
+        <ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium">
+        </ion-icon>
+        {{item.name}}
+        <ion-label class= "accordionPanel" *ngIf="isGroupShown(i)"> 
+          {{item.stat}}
+          <ion-button> Edit </ion-button>
+        </ion-label>
+      </ion-label>
+      <!--> accordionLabel is being filled of items from item.header <!-->
+      <!--> A div panel that is populated with information for the accordion. Is shown and hidden via clicks on the ion item <!-->
+    </ion-item>
+  </ion-list>
+</ion-content>
