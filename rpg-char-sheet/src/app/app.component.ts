@@ -33,8 +33,9 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.database.createTables();
+    
     this.platform.ready().then(() => {
+      this.database.createTables();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

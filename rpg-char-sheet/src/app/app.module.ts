@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DatabaseProvider } from './database';
+import { SQLite } from '@ionic-native/sqlite/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,12 +17,14 @@ import { DatabaseProvider } from './database';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     DatabaseProvider,
+    SQLite,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

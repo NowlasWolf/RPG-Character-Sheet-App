@@ -13,9 +13,8 @@ export class DatabaseProvider
 
     public createDbFile()
     {
-
-        this.sqlite.create
-        ({
+        console.log("DB file making...")
+        this.sqlite.create({
             name: DATABASE_FILE_NAME,
             location: 'default',
         }).then(res => console.log('Executed SQL')).catch(e => console.log(e));   
