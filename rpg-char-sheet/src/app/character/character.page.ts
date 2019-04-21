@@ -11,7 +11,14 @@ export class CharacterPage implements OnInit {
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 
   constructor() { 
-  		this.items = [{name: "Tester", stat: "Testing stat"}];
+		this.items = [
+		{name: "Strength", stat: "20"},
+		{name: "Dexterity", stat: "20"},
+		{name: "Constitution", stat: "20"},
+		{name: "Intelligence", stat: "20"},
+		{name: "Wisdom", stat: "20"},
+		{name: "Charisma", stat: "20"}
+			];
 
   }
   ngOnInit() {

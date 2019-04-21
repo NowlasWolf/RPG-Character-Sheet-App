@@ -9,20 +9,55 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-   <ion-list class="accordion" *ngFor= "let item of items; let i=index"> <!--> Controls everything in the accordion list as a whole <!-->
-    <ion-item class="accordionHeader"  lines="none"  (click)="toggleGroup(i)" ngClass="{active: isGroupShown(i)"> 
+   <ion-list class="stats" *ngFor= "let item of items; let i=index"> <!--> Controls everything in the accordion list as a whole <!-->
+    <ion-item class="statsHeader"  lines="none"  (click)="toggleGroup(i)" ngClass="{active: isGroupShown(i)"> 
     <!--> accordionHeader is in charge of creating each item for the list [ngClass]="{active: isGroupShown(i)}"<!-->
-      <ion-label class= "accordionLabel">
-        <ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium">
-        </ion-icon>
+      <ion-label class= "statsLabel">
+       <!--> <ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium"> <!-->
         {{item.name}}
-        <ion-label class= "accordionPanel" *ngIf="isGroupShown(i)"> 
+        <ion-label class= "statsPanel"> 
           {{item.stat}}
-          <ion-button> Edit </ion-button>
         </ion-label>
       </ion-label>
       <!--> accordionLabel is being filled of items from item.header <!-->
       <!--> A div panel that is populated with information for the accordion. Is shown and hidden via clicks on the ion item <!-->
     </ion-item>
   </ion-list>
+   <!-- <ion-label class= "skillLabel">
+      <ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium">
+        Skill
+      <ion-label class= "skillPanel"> 
+        A skill
+      </ion-label>
+    </ion-label> <!-->
+    <ion-item lines="none" class="skillHeader"> 
+        <ion-label class= "skillLabel">
+              Skill
+              <br>
+              <ion-label class="skillsPanel">
+                Acrobatics
+                <br>
+                Animal Handling
+                <br>
+                Arcana
+                <br>
+                Sleight of Hand
+                </ion-label>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none" class="saveHeader"> 
+        <ion-label class= "skillLabel">
+              Saving Throws
+              <br>
+              <ion-label class="savePanel">
+                Strength
+                <br>
+                Dexterity
+                <br>
+                Constitution
+                <br>
+                etc...
+                </ion-label>
+        </ion-label>
+    </ion-item>
 </ion-content>
