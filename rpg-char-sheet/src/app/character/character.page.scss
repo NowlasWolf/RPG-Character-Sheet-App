@@ -1,27 +1,45 @@
 
 .stats{
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
   width: 9rem;
 }
-.statHeader{
-
-}
-.statsLabel{
-  //position: relative;
-	//display: block;
-  //float: left;
+.statsHeader{
   text-align: center;
-	background: #eee;
-  height: 5rem;
-  padding: 10px;
+  background-color: #eee;
+  width:7rem;
+  height:6rem;
+  //padding: 5px;
   border-radius: 10px;
+} 
+.statsLabel{
+  margin-top: 10px;
+  text-align: center;
 }
 
 .statsPanel { 
-    background: #eee;
+    top: -0.5rem;
+    font-size: 1.5rem;
     text-align: center;
-    //word-wrap: break-word;
+    left: -0.4rem;
   }
+.statsMod {
+  position: absolute;
+  margin-top: -3rem;
+  margin-left: 2.55rem;
+  width: 3.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgb(197, 196, 196);
+}
+.statsContainer{
+  height: 7rem;
+}
+.statsText{
+  text-align: center;
+  font-size: 1.5rem;
+  left: -0.25rem;
+  top: -0.1rem;
+}
  .plus_minus{
  	position: relative;
  	top: 10px;
@@ -41,7 +59,7 @@
     padding: 5px;
     border-radius: 10px;
   }
-.skillsPanel{
+.skillPanel{
     position: relative;
     text-align: justify;
     float: right;
@@ -51,13 +69,33 @@
   right: 0.5rem;
   left: 9rem;
   top: 9rem;
-  text-align: center
+  text-align: center;
+}
+.saveContainer{
+  background: #eee;
+  width: 12rem;
+  border-radius: 10px;
 }
 .savePanel{
   position: relative;
   text-align: justify;
-  float: right;
-  right: 2rem;
+  //float: right;
+  left: 5rem;
+  height: 2rem;
+}
+.saveInput{
+  position: relative;
+  //font-size: 1.2rem;
+  //margin-right: 3.25rem;
+  top: 0.85rem;
+  right: 4rem;
+  height: 2rem;
+  
+}
+.saveContainer2{
+  position: absolute;
+  //margin-top: 2rem;
+  //margin-right: 7rem;
 }
  .remind{
     text-align: right;
@@ -71,5 +109,4 @@
   }
   ion-icon {
         font-size: 25px;
-    }
-
+  }

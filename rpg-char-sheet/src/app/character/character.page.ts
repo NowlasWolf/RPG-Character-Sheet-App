@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterPage implements OnInit {
 
-	items: any; //The items array initiziler 
+	items: any; //The items array initiziler
+	save: any; 
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 
   constructor() { 

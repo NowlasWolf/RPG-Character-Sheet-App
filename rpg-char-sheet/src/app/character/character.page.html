@@ -10,18 +10,18 @@
 </ion-header>
 <ion-content padding>
    <ion-list class="stats" *ngFor= "let item of items; let i=index"> <!--> Controls everything in the accordion list as a whole <!-->
-    <ion-item class="statsHeader"  lines="none"  (click)="toggleGroup(i)" ngClass="{active: isGroupShown(i)"> 
-    <!--> accordionHeader is in charge of creating each item for the list [ngClass]="{active: isGroupShown(i)}"<!-->
-      <ion-label class= "statsLabel">
-       <!--> <ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium"> <!-->
-        {{item.name}}
-        <ion-label class= "statsPanel"> 
-          {{item.stat}}
-        </ion-label>
-      </ion-label>
-      <!--> accordionLabel is being filled of items from item.header <!-->
-      <!--> A div panel that is populated with information for the accordion. Is shown and hidden via clicks on the ion item <!-->
+    <div class="statsContainer">
+      <ion-item lines="none">
+        <div class="statsHeader">
+            <ion-label class="statsLabel"> {{item.name}}</ion-label>
+            <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="statsPanel"></ion-input>
+        
+        </div>
     </ion-item>
+    </div>
+    <div class="statsMod">
+      <ion-input type="text" inputmode="numeric" maxlength="2" class="statsText" placeholder="0"></ion-input>
+    </div>
   </ion-list>
    <!-- <ion-label class= "skillLabel">
       <ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium">
@@ -46,18 +46,20 @@
         </ion-label>
     </ion-item>
     <ion-item lines="none" class="saveHeader"> 
-        <ion-label class= "skillLabel">
+      <div class="saveContainer2">
+        <ion-input type="text" inputmode="numeric" maxlength="2" pattern="[0-9]+" placeholder="..." class="saveInput"  *ngFor= "let item of items; let i=index" ></ion-input>
+      </div>
+      <div class="saveContainer">
+        
+        <ion-label>
               Saving Throws
-              <br>
-              <ion-label class="savePanel">
-                Strength
-                <br>
-                Dexterity
-                <br>
-                Constitution
-                <br>
-                etc...
-                </ion-label>
+              <br> <br>
         </ion-label>
+        
+        <ion-label class="savePanel" *ngFor= "let item of items; let i=index">
+
+            {{item.name}}<br>
+        </ion-label>
+      </div>
     </ion-item>
 </ion-content>
