@@ -41,9 +41,4 @@ export class DatabaseProvider
     {
         this.db.executeSql(sql).catch(e => console.log(e));
     }
-
-    public fetchInfo()
-    {
-        
-    }
 }
