@@ -12,7 +12,7 @@ export class CharacterPage implements OnInit {
 	save: any; 
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 
-  constructor(public database : DatabaseProvider) { 
+  constructor(private database : DatabaseProvider) { 
 		this.items = [
 		{name: "Strength", stat: "20"},
 		{name: "Dexterity", stat: "20"},
