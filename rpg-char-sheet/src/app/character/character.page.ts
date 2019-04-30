@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseProvider } from '../database';
 
 @Component({
   selector: 'app-character',
@@ -11,7 +12,7 @@ export class CharacterPage implements OnInit {
 	save: any; 
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 
-  constructor() { 
+  constructor(private database : DatabaseProvider) { 
 		this.items = [
 		{name: "Strength", stat: "20"},
 		{name: "Dexterity", stat: "20"},
