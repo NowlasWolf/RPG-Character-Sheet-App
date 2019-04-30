@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Character</ion-title>
+	 <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<ion-label>Enter Character's Name</ion-label>
+			<ion-input placeholder="..." input="text" maxlength="20"></ion-input>
+			
+		</ion-item>
+		<ion-item *ngFor= "let stat of stats; let i=index">
+			<ion-label>{{stat.name}}</ion-label>
+			<ion-input placeholder="..." input="text" maxlength="2" inputmode="numeric"></ion-input>
+		</ion-item>
+		<ion-button size="full" [routerLink]="['/character']">Create</ion-button>
+	</ion-list>
+</ion-content>
