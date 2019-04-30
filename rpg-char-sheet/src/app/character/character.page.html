@@ -9,7 +9,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-    <ion-item lines="none">
+  <ion-list>
+    
+    <ion-item lines="none" class="toprow">
       <div class="HitContainer">
         HitPoints
         <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" class="HitText">
@@ -19,7 +21,33 @@
           </ion-input>
 
     </div>
+    <div class="AContainer">
+      AC
+      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+    </div>
+    <div class="InitContainer">
+      Initiative
+      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+    </div>
     </ion-item>
+    <ion-item lines="none">
+      <div class="PContainer">
+        Proficiency
+        <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+        Bonus
+      </div>
+    <div class="SpeedContainer">
+      Speed
+      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+    </div>
+    <div class="InspirContainer">
+        Inspiration
+        <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+      </div>
+    </ion-item>
+  </ion-list>
+    
+
    <ion-list class="stats" *ngFor= "let item of items; let i=index"> <!--> Controls everything in the accordion list as a whole <!-->
     <div class="statsContainer">
       <ion-item lines="none">
@@ -70,5 +98,17 @@
             {{item.name}}<br>
         </ion-label>
       </div>
+      
     </ion-item>
+    <div class="DeathContainer">
+        Death Saves <br>
+          <div class="successText"> Successes</div>
+          <ion-checkbox class="checkbox"></ion-checkbox>
+          <ion-checkbox class="checkbox"></ion-checkbox>
+          <ion-checkbox class="checkbox"></ion-checkbox>
+          <div class="successText"> Failures </div>
+          <ion-checkbox class="checkbox"></ion-checkbox>
+          <ion-checkbox class="checkbox"></ion-checkbox>
+          <ion-checkbox class="checkbox"></ion-checkbox>
+    </div>
 </ion-content>

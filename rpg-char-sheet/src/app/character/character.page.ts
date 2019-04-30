@@ -59,5 +59,4 @@ export class CharacterPage implements OnInit {
   	isGroupShown(group) {
       		return this.shownGroup == group;
   	};
-
 }
