@@ -20,7 +20,7 @@
     top: -0.5rem;
     font-size: 1.5rem;
     text-align: center;
-    left: 0.1rem;
+    left: -0.4rem;
   }
 .statsMod {
   position: absolute;
@@ -37,7 +37,7 @@
 .statsText{
   text-align: center;
   font-size: 1.5rem;
-  left: 0.25rem;
+  left: -0.25rem;
   top: -0.1rem;
 }
  .plus_minus{
@@ -48,12 +48,13 @@
     position: absolute;
     right: 0.5rem;
     left: 9rem;
-    top: 1rem;
+    top: 9.6rem;
     text-align: center;
     background: #eee;
     border-radius: 10px;
   }
 .skillLabel{
+    //position: absolute;
     text-align: center;
     background: #eee;
     padding: 5px;
@@ -62,18 +63,40 @@
 .skillPanel{
     position: relative;
     text-align: justify;
-    float: right;
+    left: 3.5rem;
+    top: -17rem;
+
   }
+.skillInput{
+  position: relative;
+  margin-top: 0.49rem;
+  top: -1.25rem;
+  right: 4rem;
+  height: 2rem;
+}
+.skillContainer{
+  background: #eee;
+  width: 12rem;
+  padding: 10px;
+  border-radius: 10px;
+  height: 47rem;
+}
+.skillContainer2{
+  position: absolute;
+  height: 10rem;
+}
 .saveHeader{
   position: absolute;
   right: 0.5rem;
-  left: 9rem;
-  top: 9rem;
+  left: 8.5rem;
+  top: 57rem;
   text-align: center;
+  padding: 10px;
 }
 .saveContainer{
   background: #eee;
   width: 12rem;
+  padding: 10px;
   border-radius: 10px;
 }
 .savePanel{
@@ -97,12 +120,22 @@
   //margin-top: 2rem;
   //margin-right: 7rem;
 }
- .remind{
-    text-align: right;
-    float: right;
-   // height: 100%;
-    margin-top: 10px;
- }
+.Container{
+
+}
+.HitContainer{
+  text-align: center;
+  margin-bottom: 5rem;
+  border-radius: 10px;
+  width: 8rem;
+  padding: 5px;
+  background: #eee;
+}
+.HitText{
+  left: 4px;
+  text-align: center;
+  font-size: 1.5rem;
+}
   ion-button{
   	float: right;
   	border-radius: 0px;

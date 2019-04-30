@@ -9,6 +9,17 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
+    <ion-item lines="none">
+      <div class="HitContainer">
+        HitPoints
+        <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" class="HitText">
+          <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" class="HitText">
+            </ion-input>
+            /
+          </ion-input>
+
+    </div>
+    </ion-item>
    <ion-list class="stats" *ngFor= "let item of items; let i=index"> <!--> Controls everything in the accordion list as a whole <!-->
     <div class="statsContainer">
       <ion-item lines="none">
@@ -31,19 +42,17 @@
       </ion-label>
     </ion-label> <!-->
     <ion-item lines="none" class="skillHeader"> 
-        <ion-label class= "skillLabel">
-              Skill
-              <br>
-              <ion-label class="skillsPanel">
-                Acrobatics
-                <br>
-                Animal Handling
-                <br>
-                Arcana
-                <br>
-                Sleight of Hand
+        
+        <div class="skillContainer">
+              <ion-label> Skills <br> <br> </ion-label>
+              <ion-input type="text" inputmode="numeric" maxlength="2" pattern="[0-9]+" placeholder="..." class="skillInput"  *ngFor= "let skill of skills; let i=index" > </ion-input>
+        </div>
+        <div class="skillContainer2">
+              <ion-label class="skillPanel" *ngFor= "let skill of skills; let i=index">
+                  <br>
+                  {{skill.name}}
                 </ion-label>
-        </ion-label>
+        </div>
     </ion-item>
     <ion-item lines="none" class="saveHeader"> 
       <div class="saveContainer2">
