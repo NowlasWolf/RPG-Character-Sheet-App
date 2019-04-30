@@ -192,9 +192,10 @@
   height: 6rem;
 }
 .DeathContainer{
-  position: absolute;
-  margin-top: 4rem;
-  right: 14.5rem;
+  position: relative;
+  margin-top: 4.5rem;
+  width: 8rem;
+  //right: 38.75rem;
   background: #eee;
   text-align: center;
   border-radius: 10px;
