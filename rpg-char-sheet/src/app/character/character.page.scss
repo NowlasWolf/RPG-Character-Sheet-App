@@ -20,12 +20,12 @@
     top: -0.5rem;
     font-size: 1.5rem;
     text-align: center;
-    left: 0.1rem;
+    left: 3px;
   }
 .statsMod {
   position: absolute;
   margin-top: -3rem;
-  margin-left: 2.55rem;
+  margin-left: 2.65rem;
   width: 3.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -37,7 +37,7 @@
 .statsText{
   text-align: center;
   font-size: 1.5rem;
-  left: 0.25rem;
+  left: 3.55px;
   top: -0.1rem;
 }
  .plus_minus{
@@ -48,12 +48,13 @@
     position: absolute;
     right: 0.5rem;
     left: 9rem;
-    top: 1rem;
+    top: 15rem;
     text-align: center;
     background: #eee;
     border-radius: 10px;
   }
 .skillLabel{
+    //position: absolute;
     text-align: center;
     background: #eee;
     padding: 5px;
@@ -62,18 +63,41 @@
 .skillPanel{
     position: relative;
     text-align: justify;
-    float: right;
+    left: 3.5rem;
+    top: -17rem;
+
   }
+.skillInput{
+  position: relative;
+  margin-top: 0.49rem;
+  top: -1.25rem;
+  right: 4.5rem;
+  height: 2rem;
+}
+.skillContainer{
+  background: #eee;
+  width: 13rem;
+  padding: 10px;
+  border-radius: 10px;
+  height: 47rem;
+}
+.skillContainer2{
+  position: absolute;
+  height: 10rem;
+}
 .saveHeader{
   position: absolute;
+  //width: 30rem;
   right: 0.5rem;
-  left: 9rem;
-  top: 9rem;
+  left: 8.5rem;
+  top: 63rem;
   text-align: center;
+  padding: 10px;
 }
 .saveContainer{
   background: #eee;
   width: 12rem;
+  padding: 10px;
   border-radius: 10px;
 }
 .savePanel{
@@ -97,12 +121,92 @@
   //margin-top: 2rem;
   //margin-right: 7rem;
 }
- .remind{
-    text-align: right;
-    float: right;
-   // height: 100%;
-    margin-top: 10px;
- }
+.Container{
+
+}
+.AContainer{
+  width: 5rem;
+  padding: 5px;
+  background: #eee;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 15px;
+  margin-bottom:  5rem;
+}
+.ACText{
+  font-size: 1.5rem;
+  left: 4px;
+}
+.InitContainer{
+  width: 6rem;
+  padding: 5px;
+  background: #eee;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 15px;
+  margin-bottom:  5rem;
+}
+.SpeedContainer{
+  width: 5rem;
+  height: 6rem;
+  padding: 5px; 
+  background: #eee;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 15px;
+}
+.InspirContainer{
+  width: 6rem;
+  height: 6rem;
+  padding: 5px; 
+  background: #eee;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 15px;
+}
+.SpeedText{
+
+}
+.HitContainer{
+  text-align: center;
+  margin-bottom: 5rem;
+  border-radius: 10px;
+  width: 8rem;
+  padding: 5px;
+  background: #eee;
+}
+.HitText{
+  left: 4px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.PContainer{
+  width: 8rem;
+  padding: 5px;
+  //margin-left: 10px;
+  background: #eee;
+  border-radius: 10px;
+  text-align: center;
+}
+.toprow{
+  height: 6rem;
+}
+.DeathContainer{
+  position: relative;
+  margin-top: 4.5rem;
+  width: 8rem;
+  //right: 38.75rem;
+  background: #eee;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+}
+.checkbox{
+  margin-left: 5px;
+}
+.successText{
+  padding: 5px;
+}
   ion-button{
   	float: right;
   	border-radius: 0px;
