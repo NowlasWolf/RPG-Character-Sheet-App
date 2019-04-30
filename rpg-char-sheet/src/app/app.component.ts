@@ -36,6 +36,7 @@ export class AppComponent {
     
     this.platform.ready().then(() => {
       this.database.createDbFile();
+      this.database.testTables();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
