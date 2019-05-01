@@ -8,9 +8,10 @@ const DATABASE_FILE_NAME: string = 'rpg.db';
 export class DatabaseProvider
 {
 
-    public db: SQLiteObject;
+    private db: SQLiteObject;
 
-    constructor(public sqlite: SQLite) {}
+    constructor(public sqlite: SQLite) {
+    }
 
     public createDbFile()
     {
@@ -43,11 +44,11 @@ export class DatabaseProvider
 
     public makeTest(){
         console.log("Making test...");
-        var querry: string = "INSERT INTO CHARACTER VALUES(0000000000, \"Test Tester\", \"5e\")";
-        this.db.executeSql(querry,[]).catch(e => console.log(e));
-        var querry: string = "INSERT INTO STATS VALUES(0000000000, 20, 10, 15, 13, 50, 5, 4, 3, 1, 0)";
-        this.db.executeSql(querry,[]).catch(e => console.log(e));
-        console.log("Maybe this was made?")
+        //var querry: string = "INSERT INTO CHARACTER VALUES(0000000000, \"Test Tester\", \"5e\")";
+        this.db.executeSql("INSERT INTO CHARACTER VALUES(?, ?, ?)",[0, "Test Tester", "5e"]).catch(e => console.log(e));
+        //var querry: string = "INSERT INTO STATS VALUES(0000000000, 20, 10, 15, 13, 50, 5, 4, 3, 1, 0)";
+        this.db.executeSql("INSERT INTO STATS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",[0,20,10,15,13,50,5,4,3,1,0]).catch(e => console.log(e));
+        console.log("Maybe this was made?");
     }
     
     public getData(ID, table, item){
