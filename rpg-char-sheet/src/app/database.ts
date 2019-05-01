@@ -13,6 +13,10 @@ export class DatabaseProvider
     constructor(public sqlite: SQLite) {
     }
 
+    public openDb(){
+        this.sqlite.create({name:DATABASE_FILE_NAME, location: 'default',})
+    }
+
     public createDbFile()
     {
         console.log("DB file making...")

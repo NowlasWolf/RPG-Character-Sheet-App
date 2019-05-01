@@ -11,6 +11,7 @@ export class CreateCharacterPage implements OnInit {
 	stats: any;
 
   constructor(private db: DatabaseProvider) { 
+		db.openDb()
 		db.makeTest()
   	this.stats = [
   		{name: "Strength"},
