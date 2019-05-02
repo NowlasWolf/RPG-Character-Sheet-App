@@ -67,9 +67,11 @@ export class DatabaseProvider
         var idnum = 0;
         this.db.executeSql('SELECT COUNTER FROM COUNT',[]).then((data) =>{
             idnum = data.rows.item(0).COUNTER + 1;
+            console.log(idnum)
+            this.db.executeSql('UPDATE COUNT SET COUNTER = ?',[idnum]).catch(e => console.log(e));
             this.db.executeSql('INSERT INTO CHARACTER VALUES (?,?,?)',[idnum,name,"5E"]).catch(e => console.log(e));
             this.db.executeSql('INSERT INTO STATS(ID_NUM, STRENGTH, DEXTERITY, CONSTITUTION, INTELLEGENCE, WISDOM, CHARISMA) VALUES (?,?,?,?,?,?,?)', [idnum, stats["Strength"], stats["Dexterity"], stats["Constitution"], stats["Intelligence"], stats["Wisdom"], stats["Charisma"]]).catch(e => console.log(e));
-            this.db.executeSql('UPDATE COUNT SET COUNTER = ?',[idnum]).catch(e => console.log(e));
+            
 
         });
     }
@@ -80,6 +82,7 @@ export class DatabaseProvider
             for(var i = 0; i < data.rows.length; i++){
                 stuff.push([data.rows.item(i).ID_NUM,data.rows.item(i).C_NAME]);
             }
+            console.log(stuff)
             return stuff
         });
     }

@@ -11,6 +11,7 @@ export class CharactersPage implements OnInit {
 	items: any;
   constructor(public db: DatabaseProvider) { 
 			this.items = db.getAll()
+			console.log(this.items)
 	}
   ngOnInit() {
   }
