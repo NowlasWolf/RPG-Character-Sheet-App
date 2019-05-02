@@ -3,9 +3,8 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-    <ion-icon name="add" size="large" [routerLink] = "['/create-character']"></ion-icon>
-    </ion-buttons>
+    <ion-label slot="end" class="level">Level</ion-label>
+    <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" slot="end"></ion-input>
     <ion-title>
       Character List
     </ion-title>
