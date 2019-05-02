@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { defineBase } from '@angular/core/src/render3';
 
 const DATABASE_FILE_NAME: string = 'rpg.db';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class DatabaseProvider
 {
 
@@ -17,10 +20,31 @@ export class DatabaseProvider
         this.sqlite.create({
             name: DATABASE_FILE_NAME,
             location: 'default',
-        }).then(res => console.log('Executed SQL')).catch(e => console.log(e));   
+        }).then((db: SQLiteObject) => {
+            this.db = db;
+            db.executeSql('CREATE TABLE IF NOT EXISTS CHARACTER(ID_NUM int(10), C_NAME character(50), C_TYPE character(10), PRIMARY KEY(ID_NUM))', []).catch(e => console.log("Character table: " + e));
+        })
     }
+    test(){
+        this.sqlite.create({
+            name: DATABASE_FILE_NAME,
+            location: 'default',
+        }).then((db: SQLiteObject) => {
+            
+            db.executeSql('INSERT INTO CHARACTER(ID_NUM,C_NAME,C_TYPE) VALUES (?,?,?)',[15,"BOB",10]);
 
-    public createTables()
+        })
+        
+    }
+    showall(){
+        this.db.executeSql('SELECT * FROM CHARACTER',[]).then((data) => {
+            let things = [];
+            for(var i = 0; i < data.rows.length; i++){
+                console.log(data.rows.item(i).ID_NUM);
+            }
+        });
+    }
+    /*public createTables()
     {
         this.createDbFile();
         console.log("table")
@@ -40,5 +64,5 @@ export class DatabaseProvider
     public executeSql(sql: string)
     {
         this.db.executeSql(sql).catch(e => console.log(e));
-    }
+    }*/
 }
