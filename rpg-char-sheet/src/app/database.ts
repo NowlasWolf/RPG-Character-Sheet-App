@@ -67,7 +67,19 @@ export class DatabaseProvider
         
     }
 
-    getCharacterTable(){
+    deleteCharacter(id: any){
+        this.db.executeSql('DELETE FROM CHARACTER WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        this.db.executeSql('DELETE FROM DETAILS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        this.db.executeSql('DELETE FROM STATS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        this.db.executeSql('DELETE FROM SKILLS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        this.db.executeSql('DELETE FROM GEAR WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        this.db.executeSql('DELETE FROM WEAPONS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        //this.db.executeSql('DELETE FROM ARMOR WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        this.db.executeSql('DELETE FROM ABILITIES WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+        this.db.executeSql('DELETE FROM SPELLS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
+    }
+
+     getCharacterTable(){
         let stuff = [];
         return this.db.executeSql('SELECT * FROM CHARACTER',[]).then((data) => {
             for(var i = 0; i < data.rows.length; i++){
@@ -78,7 +90,7 @@ export class DatabaseProvider
                 });
                 //stuff.push([data.rows.item(i).ID_NUM,data.rows.item(i).C_NAME]);
             }
-            return stuff
+            return stuff;
         }).catch(e => {console.log(e)});
     }
 
@@ -101,7 +113,7 @@ export class DatabaseProvider
                     insp: data.rows.item(i).INSPIRATION
                 });
             }
-            return stuff
+            return stuff;
         }).catch(e => {console.log(e)});
    }
 }
