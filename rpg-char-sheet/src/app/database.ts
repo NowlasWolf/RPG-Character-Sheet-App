@@ -68,6 +68,7 @@ export class DatabaseProvider
     }
 
     deleteCharacter(id: any){
+        console.log("Deleting character with ID: " + id);
         this.db.executeSql('DELETE FROM CHARACTER WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
         this.db.executeSql('DELETE FROM DETAILS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
         this.db.executeSql('DELETE FROM STATS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
