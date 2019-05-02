@@ -21,7 +21,7 @@
 					<ion-label class= "accordionPanel" *ngIf="isGroupShown(i)"> 
 						5E Character
 						<br>
-						<ion-button [routerLink] = "['/character']">View</ion-button>
+						<ion-button [routerLink]="'/character/' + item.ID" routerDirection="forward">View</ion-button>
 					</ion-label>
 				</ion-label>
 				
