@@ -6,7 +6,7 @@
     <ion-label slot="end" class="level">Level</ion-label>
     <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" slot="end"></ion-input>
     <ion-title>
-      Character List
+      {{character[0].Name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,8 +16,8 @@
     <ion-item lines="none" class="toprow">
       <div class="HitContainer">
         HitPoints
-        <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" class="HitText">
-          <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" class="HitText">
+        <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" class="HitText"[(ngModel)]="stats[0].hit"(ngModelChange)="updatevalue('STATS')">
+          <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" class="HitText"[(ngModel)]="stats[0].max"(ngModelChange)="updatevalue('STATS')">
             </ion-input>
             /
           </ion-input>
@@ -35,7 +35,7 @@
     <ion-item lines="none">
       <div class="PContainer">
         Proficiency
-        <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+        <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"[(ngModel)]="stats[0].prof"(ngModelChange)="updatevalue('STATS')"> </ion-input>
         Bonus
       </div>
     <div class="SpeedContainer">
@@ -44,7 +44,7 @@
     </div>
     <div class="InspirContainer">
         Inspiration
-        <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+        <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText" [(ngModel)]="stats[0].insp"(ngModelChange)="updatevalue('STATS')"> </ion-input>
       </div>
     </ion-item>
   </ion-list>
@@ -55,7 +55,7 @@
       <ion-item lines="none">
         <div class="statsHeader">
             <ion-label class="statsLabel"> {{item.name}}</ion-label>
-            <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="statsPanel"></ion-input>
+            <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="statsPanel" [(ngModel)]="stats[0][item.name]"(ngModelChange)="updatevalue('STATS')"></ion-input>
         
         </div>
     </ion-item>

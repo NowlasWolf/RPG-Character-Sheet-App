@@ -30,6 +30,5 @@ export class CreateCharacterPage implements OnInit {
   }
 	addChar(){
 		this.db.createCharacter(this.nameEnter, this.stats);
-		this.db.showall();
 	}
 }

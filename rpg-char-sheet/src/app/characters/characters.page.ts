@@ -17,7 +17,7 @@ export class CharactersPage implements OnInit {
 	ionViewDidEnter(){
 		this.loadingCtrl.create().then(a => {
 			a.present().then(b => {
-				this.db.getCharacterTable().then(data => {
+				this.db.getCharacters().then(data => {
 					this.items = data;
           console.log(this.items);
 					a.dismiss()

@@ -15,18 +15,31 @@ export class CharacterPage implements OnInit {
   character: any;
   stats: any;
   skills: any;
-	save: any; 
-	shownGroup = null; //Controlls the hidden / shown values for the div in html
+  save: any; 
+  currentid: any;
+  shownGroup = null; //Controlls the hidden / shown values for the div in html
+  
+  bonuses: any;
 
   constructor(public db: DatabaseProvider, public loadingCtrl:LoadingController,public route: ActivatedRoute, public router: Router) { 
 		this.items = [
 		{name: "Strength", stat: "20"},
 		{name: "Dexterity", stat: "20"},
 		{name: "Constitution", stat: "20"},
-		{name: "Intelligence", stat: "20"},
+    {name: "Intelligence", stat: "20"},
 		{name: "Wisdom", stat: "20"},
 		{name: "Charisma", stat: "20"}
-			];
+      ];
+      
+    this.bonuses = [
+      {name: "Strength", stat: null},
+		  {name: "Dexterity", stat: null},
+		  {name: "Constitution", stat: null},
+      {name: "Intelligence", stat: null},
+		  {name: "Wisdom", stat: null},
+		  {name: "Charisma", stat: null}
+
+    ]
 
     this.skills = [
     {name: "Acrobatics", stat: "20"},
@@ -55,19 +68,40 @@ export class CharacterPage implements OnInit {
     
     this.loadingCtrl.create().then(a => {
       a.present().then(b => {
-        this.db.getCharacterTable().then(data => {
+        let id = this.route.snapshot.paramMap.get("id");
+        this.currentid = parseInt(id,10);
+        this.db.getCharacterTable(this.currentid).then(data => {
           this.character = data;
-          let id = this.route.snapshot.paramMap.get("id");
-          var currentid = parseInt(id,10);
-          console.log(currentid);
-          this.db.getStatTable().then(data => {
+          console.log(this.character)
+          console.log(this.currentid);
+          this.db.getStatTable(this.currentid).then(data => {
              this.stats = data;
-             console.log(this.stats);
+             //this.getbonus();
           })
           a.dismiss()
         });
       });
     });
+  }
+
+  getbonus(){
+      for(var i = 0; i < this.bonuses.length; i++){
+        var score = this.stats[this.bonuses[i].name]
+        score = score - 10;
+        score = score / 2;
+        score = Math.floor(score);
+        this.bonuses[i].stat = score;
+      }
+
+  }
+
+  updatevalue(table){
+    console.log("Updating " + table);
+    if(table == "STATS"){
+      this.db.updateStats(this.currentid, this.stats[0]);
+      //this.getbonus()
+    }
+
   }
 
   toggleGroup(group) {

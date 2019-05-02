@@ -54,16 +54,22 @@ export class DatabaseProvider
         });
         this.db.executeSql('SELECT * FROM STATS',[]).then((data) => {
             for(var i = 0; i < data.rows.length; i++){
-                console.log(data.rows.item(i).ID_NUM + " " + data.rows.item(i).STRENGTH + " " + data.rows.item(i).DEXTERITY + " " + data.rows.item(i).CONSTITUTION + " " + data.rows.item(i).INTELLEGENCE + " " + data.rows.item(i).WISDOM + " " + data.rows.item(i).CHARISMA);
+                console.log(data.rows.item(i).ID_NUM + " " + data.rows.item(i).STRENGTH + " " + data.rows.item(i).DEXTERITY + " " + data.rows.item(i).CONSTITUTION + " " + data.rows.item(i).INTELLIGENCE + " " + data.rows.item(i).WISDOM + " " + data.rows.item(i).CHARISMA);
 
             }
         });
     }
 
+    updateStats(id, content){
+        this.db.executeSql('UPDATE STATS SET STRENGTH = ?, DEXTERITY = ?, CONSTITUTION = ?, INTELLIGENCE = ?, WISDOM = ?, CHARISMA = ?, MAX_HIT_POINTS = ?, HIT_POINTS = ?, BASE_ATTACK_BONUS = ?, PROFICIENCY_BONUS = ?, INSPIRATION = ? WHERE ID_NUM = ?',[content.Strength, content.Dexterity, content.Constitution, content.Intelligence, content.Wisdom, content.Charisma, content.max, content.hit, content.att_bonus, content.prof, content.insp, id]).catch(e => console.log(e));
+
+
+    }
+
     createCharacter(name: any, stats: {}){
         var idnum = Math.floor(Math.random()*100000000000000000000);
         this.db.executeSql('INSERT INTO CHARACTER VALUES (?,?,?)',[idnum,name,"5E"]).catch(e => console.log(e));
-        this.db.executeSql('INSERT INTO STATS(ID_NUM, STRENGTH, DEXTERITY, CONSTITUTION, INTELLEGENCE, WISDOM, CHARISMA) VALUES (?,?,?,?,?,?,?)', [idnum, stats["Strength"], stats["Dexterity"], stats["Constitution"], stats["Intelligence"], stats["Wisdom"], stats["Charisma"]]).catch(e => console.log(e));
+        this.db.executeSql('INSERT INTO STATS(ID_NUM, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA) VALUES (?,?,?,?,?,?,?)', [idnum, stats["Strength"], stats["Dexterity"], stats["Constitution"], stats["Intelligence"], stats["Wisdom"], stats["Charisma"]]).catch(e => console.log(e));
         
     }
 
@@ -80,33 +86,46 @@ export class DatabaseProvider
         this.db.executeSql('DELETE FROM SPELLS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
     }
 
-     getCharacterTable(){
+     getCharacters(){
         let stuff = [];
         return this.db.executeSql('SELECT * FROM CHARACTER',[]).then((data) => {
             for(var i = 0; i < data.rows.length; i++){
                 stuff.push({
                     ID: data.rows.item(i).ID_NUM,
-                    Name: data.rows.item(i).C_NAME
-
+                    Name: data.rows.item(i).C_NAME,
+                    Type: data.rows.item(i).C_TYPE
                 });
-                //stuff.push([data.rows.item(i).ID_NUM,data.rows.item(i).C_NAME]);
             }
             return stuff;
         }).catch(e => {console.log(e)});
     }
 
-   getStatTable(){
-       let stuff = [];
-        return this.db.executeSql('SELECT * FROM STATS',[]).then((data) => {
+    getCharacterTable(id){
+        let stuff = [];
+        return this.db.executeSql('SELECT * FROM CHARACTER WHERE ID_NUM = ?',[id]).then((data) => {
             for(var i = 0; i < data.rows.length; i++){
                 stuff.push({
                     ID: data.rows.item(i).ID_NUM,
-                    str: data.rows.item(i).STRENGTH,
-                    dex: data.rows.item(i).DEXTERITY,
-                    con: data.rows.item(i).CONSTITUTION,
-                    int: data.rows.item(i).INTELLIGENCE,
-                    wis: data.rows.item(i).WISDOM,
-                    char: data.rows.item(i).CHARISMA,
+                    Name: data.rows.item(i).C_NAME,
+                    Type: data.rows.item(i).C_TYPE
+                });
+            }
+            return stuff;
+        }).catch(e => {console.log(e)});
+    }
+
+   getStatTable(id){
+       let stuff = [];
+        return this.db.executeSql('SELECT * FROM STATS WHERE ID_NUM = ?',[id]).then((data) => {
+            for(var i = 0; i < data.rows.length; i++){
+                stuff.push({
+                    ID: data.rows.item(i).ID_NUM,
+                    Strength: data.rows.item(i).STRENGTH,
+                    Dexterity: data.rows.item(i).DEXTERITY,
+                    Constitution: data.rows.item(i).CONSTITUTION,
+                    Intelligence: data.rows.item(i).INTELLIGENCE,
+                    Wisdom: data.rows.item(i).WISDOM,
+                    Charisma: data.rows.item(i).CHARISMA,
                     max: data.rows.item(i).MAX_HIT_POINTS,
                     hit: data.rows.item(i).HIT_POINTS,
                     att_bonus: data.rows.item(i).BASE_ATTACK_BONUS,
