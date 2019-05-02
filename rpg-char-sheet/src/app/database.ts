@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { defineBase } from '@angular/core/src/render3';
 
 const DATABASE_FILE_NAME: string = 'rpg.db';
 
@@ -31,8 +30,6 @@ export class DatabaseProvider
             //db.executeSql('CREATE TABLE IF NOT EXISTS ARMOR(ID_NUM int(10), C_ID int(10), AR_NAME character(32), AC_BONUS int(2), MAX_DEX int(2), CHECK int(2), SPELL_FAIL int(2), AR_WEIGHT int(4), AR_AMOUNT int(4), PRIMARY KEY(ID_NUM, C_ID))', []).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS ABILITIES(ID_NUM int(10), C_ID int(10), AB_NAME character(32), AB_TYPE int(1), AB_LEVEL int(2), PRIMARY KEY(ID_NUM, C_ID))', []).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS SPELLS(ID_NUM int(10), C_ID int(10), SP_NAME character(32), SP_LEVEL int(1), PRIMARY KEY(ID_NUM, C_ID))', []).catch(e => console.log(e));
-            db.executeSql('CREATE TABLE IF NOT EXISTS COUNT(COUNTER int(10), PRIMARY KEY(COUNTER))', []).catch(e => console.log(e));
-            db.executeSql('INSERT OR IGNORE INTO COUNT VALUES(?)', [0]).catch(e => console.log(e));
 
         })
     }
@@ -64,16 +61,10 @@ export class DatabaseProvider
     }
 
     createCharacter(name: any, stats: {}){
-        var idnum = 0;
-        this.db.executeSql('SELECT COUNTER FROM COUNT',[]).then((data) =>{
-            idnum = data.rows.item(0).COUNTER + 1;
-            console.log(idnum)
-            this.db.executeSql('UPDATE COUNT SET COUNTER = ?',[idnum]).catch(e => console.log(e));
-            this.db.executeSql('INSERT INTO CHARACTER VALUES (?,?,?)',[idnum,name,"5E"]).catch(e => console.log(e));
-            this.db.executeSql('INSERT INTO STATS(ID_NUM, STRENGTH, DEXTERITY, CONSTITUTION, INTELLEGENCE, WISDOM, CHARISMA) VALUES (?,?,?,?,?,?,?)', [idnum, stats["Strength"], stats["Dexterity"], stats["Constitution"], stats["Intelligence"], stats["Wisdom"], stats["Charisma"]]).catch(e => console.log(e));
-            
-
-        });
+        var idnum = Math.floor(Math.random()*100000000000000000000);
+        this.db.executeSql('INSERT INTO CHARACTER VALUES (?,?,?)',[idnum,name,"5E"]).catch(e => console.log(e));
+        this.db.executeSql('INSERT INTO STATS(ID_NUM, STRENGTH, DEXTERITY, CONSTITUTION, INTELLEGENCE, WISDOM, CHARISMA) VALUES (?,?,?,?,?,?,?)', [idnum, stats["Strength"], stats["Dexterity"], stats["Constitution"], stats["Intelligence"], stats["Wisdom"], stats["Charisma"]]).catch(e => console.log(e));
+        
     }
 
     getAll(){
