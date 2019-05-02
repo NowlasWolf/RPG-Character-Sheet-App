@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseProvider } from '../database';
+import { LoadingController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character',
@@ -8,11 +12,13 @@ import { Component, OnInit } from '@angular/core';
 export class CharacterPage implements OnInit {
 
 	items: any; //The items array initiziler
+  character: any;
+  stats: any;
   skills: any;
 	save: any; 
 	shownGroup = null; //Controlls the hidden / shown values for the div in html
 
-  constructor() { 
+  constructor(public db: DatabaseProvider, public loadingCtrl:LoadingController,public route: ActivatedRoute, public router: Router) { 
 		this.items = [
 		{name: "Strength", stat: "20"},
 		{name: "Dexterity", stat: "20"},
@@ -44,6 +50,24 @@ export class CharacterPage implements OnInit {
 
   }
   ngOnInit() {
+  }
+  ionViewDidEnter(){
+    
+    this.loadingCtrl.create().then(a => {
+      a.present().then(b => {
+        this.db.getCharacterTable().then(data => {
+          this.character = data;
+          let id = this.route.snapshot.paramMap.get("id");
+          var currentid = parseInt(id,10);
+          console.log(currentid);
+          this.db.getStatTable().then(data => {
+             this.stats = data;
+             console.log(this.stats);
+          })
+          a.dismiss()
+        });
+      });
+    });
   }
 
   toggleGroup(group) {

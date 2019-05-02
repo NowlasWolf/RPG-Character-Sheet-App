@@ -7,7 +7,7 @@ const routes: Routes = [
     redirectTo: 'characters',
     pathMatch: 'full'
   },
-  { path: 'character', loadChildren: './character/character.module#CharacterPageModule' },
+  { path: 'character/:id', loadChildren: './character/character.module#CharacterPageModule' },
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'

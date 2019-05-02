@@ -23,7 +23,7 @@ export class DatabaseProvider
             this.db = db;
             db.executeSql('CREATE TABLE IF NOT EXISTS CHARACTER(ID_NUM int(10), C_NAME character(50), C_TYPE character(10), PRIMARY KEY(ID_NUM))', []).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS DETAILS(ID_NUM int(10), AGE int(6), HEIGHT character(10), C_WEIGHT character(10), HAIR character(10), EYES character(15), GENDER character(10), RACE character(20), CLASS character(20), LEVEL int(2), EXPERIENCE int(10), PRIMARY KEY(ID_NUM))',[]).catch(e => console.log(e));
-            db.executeSql('CREATE TABLE IF NOT EXISTS STATS(ID_NUM int(10), STRENGTH int(2), DEXTERITY int(2), CONSTITUTION int(2), INTELLEGENCE int(2), WISDOM int(2), CHARISMA int(2), MAX_HIT_POINTS int(4), HIT_POINTS int(4), BASE_ATTACK_BONUS int(2), PROFICIENCY_BONUS int(2), INSPIRATION int(1), PRIMARY KEY(ID_NUM))',[]).catch(e => console.log(e));
+            db.executeSql('CREATE TABLE IF NOT EXISTS STATS(ID_NUM int(10), STRENGTH int(2), DEXTERITY int(2), CONSTITUTION int(2), INTELLIGENCE int(2), WISDOM int(2), CHARISMA int(2), MAX_HIT_POINTS int(4), HIT_POINTS int(4), BASE_ATTACK_BONUS int(2), PROFICIENCY_BONUS int(2), INSPIRATION int(1), PRIMARY KEY(ID_NUM))',[]).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS SKILLS(ID_NUM int(10), C_ID int(10), SK_NAME character(10), RANKS int(2), PROFICIENCY int(1), PRIMARY KEY(ID_NUM, C_ID))',[]).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS GEAR(ID_NUM int(10), C_ID int(10), G_NAME character(32), G_WEIGHT int(4), AMOUNT int(4), PRIMARY KEY(ID_NUM, C_ID))', []).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS WEAPONS(ID_NUM int(10), C_ID int(10), W_NAME character(32), DAMAGE character(6), TYPE character(12), RANGE int(4), CRITICAL character(6), W_WEIGHT int(4), W_AMOUNT int(4), PRIMARY KEY(ID_NUM, C_ID))', []).catch(e => console.log(e));
@@ -80,7 +80,7 @@ export class DatabaseProvider
         this.db.executeSql('DELETE FROM SPELLS WHERE ID_NUM = ?',[id]).catch(e => console.log(e));
     }
 
-    getAll(){
+     getCharacterTable(){
         let stuff = [];
         return this.db.executeSql('SELECT * FROM CHARACTER',[]).then((data) => {
             for(var i = 0; i < data.rows.length; i++){
@@ -91,7 +91,30 @@ export class DatabaseProvider
                 });
                 //stuff.push([data.rows.item(i).ID_NUM,data.rows.item(i).C_NAME]);
             }
-            return stuff
+            return stuff;
         }).catch(e => {console.log(e)});
     }
+
+   getStatTable(){
+       let stuff = [];
+        return this.db.executeSql('SELECT * FROM STATS',[]).then((data) => {
+            for(var i = 0; i < data.rows.length; i++){
+                stuff.push({
+                    ID: data.rows.item(i).ID_NUM,
+                    str: data.rows.item(i).STRENGTH,
+                    dex: data.rows.item(i).DEXTERITY,
+                    con: data.rows.item(i).CONSTITUTION,
+                    int: data.rows.item(i).INTELLIGENCE,
+                    wis: data.rows.item(i).WISDOM,
+                    char: data.rows.item(i).CHARISMA,
+                    max: data.rows.item(i).MAX_HIT_POINTS,
+                    hit: data.rows.item(i).HIT_POINTS,
+                    att_bonus: data.rows.item(i).BASE_ATTACK_BONUS,
+                    prof: data.rows.item(i).PROFICIENCY_BONUS,
+                    insp: data.rows.item(i).INSPIRATION
+                });
+            }
+            return stuff;
+        }).catch(e => {console.log(e)});
+   }
 }

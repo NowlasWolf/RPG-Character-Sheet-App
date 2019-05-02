@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseProvider } from '../database';
 import { LoadingController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-characters',
@@ -10,13 +12,14 @@ import { LoadingController } from '@ionic/angular';
 export class CharactersPage implements OnInit {
 	shownGroup = null;
 	items: any;
-  constructor(public db: DatabaseProvider, public loadingCtrl:LoadingController) { 
+  constructor(public db: DatabaseProvider, public loadingCtrl:LoadingController,public route: ActivatedRoute, public router: Router) { 
 	}
 	ionViewDidEnter(){
 		this.loadingCtrl.create().then(a => {
 			a.present().then(b => {
-				this.db.getAll().then(data => {
+				this.db.getCharacterTable().then(data => {
 					this.items = data;
+          console.log(this.items);
 					a.dismiss()
 				});
 			});
