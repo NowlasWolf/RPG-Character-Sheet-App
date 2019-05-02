@@ -78,12 +78,11 @@ export class DatabaseProvider
 
     getAll(){
         let stuff = [];
-        this.db.executeSql('SELECT * FROM CHARACTER',[]).then((data) => {
+        return this.db.executeSql('SELECT * FROM CHARACTER',[]).then((data) => {
             for(var i = 0; i < data.rows.length; i++){
                 stuff.push([data.rows.item(i).ID_NUM,data.rows.item(i).C_NAME]);
             }
-            console.log(stuff)
             return stuff
-        });
+        }).catch(e => {console.log(e)});
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseProvider } from '../database';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-characters',
@@ -9,9 +10,17 @@ import { DatabaseProvider } from '../database';
 export class CharactersPage implements OnInit {
 	shownGroup = null;
 	items: any;
-  constructor(public db: DatabaseProvider) { 
-			this.items = db.getAll()
-			console.log(this.items)
+  constructor(public db: DatabaseProvider, public loadingCtrl:LoadingController) { 
+	}
+	ionViewDidEnter(){
+		this.loadingCtrl.create().then(a => {
+			a.present().then(b => {
+				this.db.getAll().then(data => {
+					this.items = data;
+					a.dismiss()
+				});
+			});
+		});
 	}
   ngOnInit() {
   }

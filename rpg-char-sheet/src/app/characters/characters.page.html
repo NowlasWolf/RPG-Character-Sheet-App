@@ -17,9 +17,9 @@
 				<ion-label>
 					<ion-icon class = "plus_minus" [name]="isGroupShown(i) ? 'arrow-up' : 'arrow-down'" size="medium">
 					</ion-icon>
-					{{item[0]}
+					{{item[1]}}
 					<ion-label class= "accordionPanel" *ngIf="isGroupShown(i)"> 
-						Yes
+						yes
 						<br>
 						<ion-button [routerLink] = "['/character']">View</ion-button>
 					</ion-label>
