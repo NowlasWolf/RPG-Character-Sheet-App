@@ -19,7 +19,7 @@
 					</ion-icon>
 					Test
 					<ion-label class= "accordionPanel" *ngIf="isGroupShown(i)"> 
-						{{item.name}}
+						{{item[0]}}
 						<br>
 						<ion-button [routerLink] = "['/character']">View</ion-button>
 					</ion-label>

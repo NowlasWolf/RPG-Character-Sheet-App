@@ -10,14 +10,14 @@
 <ion-content>
 	<ion-list>
 		<ion-item>
-			<ion-label>Enter Character's Name</ion-label>
-			<ion-input placeholder="..." input="text" maxlength="20"></ion-input>
+			<ion-label>Name: </ion-label>
+			<ion-input placeholder="..." input="text" maxlength="32" [(ngModel)]="nameEnter"></ion-input>
 			
 		</ion-item>
-		<ion-item *ngFor= "let stat of stats; let i=index">
-			<ion-label>{{stat.name}}</ion-label>
-			<ion-input placeholder="..." input="text" maxlength="2" inputmode="numeric"></ion-input>
+		<ion-item *ngFor= "let key of keys">
+			<ion-label>{{key}}:</ion-label>
+			<ion-input placeholder="..." input="text" maxlength="2" inputmode="numeric" [(ngModel)]="stats[key]"></ion-input>
 		</ion-item>
-		<ion-button size="full" (click)="addChar()">Create</ion-button>
+		<ion-button size="full" (click)="addChar()" [routerLink] = "['/character']">Create</ion-button>
 	</ion-list>
 </ion-content>

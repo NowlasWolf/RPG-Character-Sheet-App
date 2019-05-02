@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { DatabaseProvider } from '../database';
 
 
@@ -8,24 +7,28 @@ import { DatabaseProvider } from '../database';
   templateUrl: './create-character.page.html',
   styleUrls: ['./create-character.page.scss'],
 })
+
 export class CreateCharacterPage implements OnInit {
+	nameEnter: any;
 	stats: any;
-  constructor(public sqlite: DatabaseProvider) { 
-  	this.stats = [
-  		{name: "Strength"},
-  		{name: "Dexterity"},
-			{name: "Constitution"},
-			{name: "Intelligence"},
-			{name: "Wisdom"},
-			{name: "Charisma"}
-		];
+	keys: any;
+  constructor(public db: DatabaseProvider) {
+		
+  	this.stats = {
+  		Strength: null,
+  		Dexterity: null,
+			Constitution: null,
+			Intelligence: null,
+			Wisdom: null,
+			Charisma: null
+		};
+		this.keys = Object.keys(this.stats);
 		
   }
 
   ngOnInit() {
   }
-addChar(){
-	this.sqlite.test();
-	this.sqlite.showall();
-}
+	addChar(){
+		this.db.createCharacter(this.nameEnter, this.stats);
+	}
 }
