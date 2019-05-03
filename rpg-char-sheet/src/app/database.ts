@@ -23,7 +23,7 @@ export class DatabaseProvider
             this.db = db;
             db.executeSql('CREATE TABLE IF NOT EXISTS CHARACTER(ID_NUM int(10), C_NAME character(50), C_TYPE character(10), PRIMARY KEY(ID_NUM))', []).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS DETAILS(ID_NUM int(10), AGE int(6), HEIGHT character(10), C_WEIGHT character(10), HAIR character(10), EYES character(15), GENDER character(10), RACE character(20), CLASS character(20), LEVEL int(2), EXPERIENCE int(10), PRIMARY KEY(ID_NUM))',[]).catch(e => console.log(e));
-            db.executeSql('CREATE TABLE IF NOT EXISTS STATS(ID_NUM int(10), STRENGTH int(2), DEXTERITY int(2), CONSTITUTION int(2), INTELLIGENCE int(2), WISDOM int(2), CHARISMA int(2), MAX_HIT_POINTS int(4), HIT_POINTS int(4), BASE_ATTACK_BONUS int(2), PROFICIENCY_BONUS int(2), INSPIRATION int(1), PRIMARY KEY(ID_NUM))',[]).catch(e => console.log(e));
+            db.executeSql('CREATE TABLE IF NOT EXISTS STATS(ID_NUM int(10), STRENGTH int(2), DEXTERITY int(2), CONSTITUTION int(2), INTELLIGENCE int(2), WISDOM int(2), CHARISMA int(2), MAX_HIT_POINTS int(4), HIT_POINTS int(4), BASE_ATTACK_BONUS int(2), PROFICIENCY_BONUS int(2), INSPIRATION int(1), SPEED int(1), LEVEL int(2), PRIMARY KEY(ID_NUM))',[]).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS SKILLS(ID_NUM int(10), C_ID int(10), SK_NAME character(10), RANKS int(2), PROFICIENCY int(1), PRIMARY KEY(ID_NUM, C_ID))',[]).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS GEAR(ID_NUM int(10), C_ID int(10), G_NAME character(32), G_WEIGHT int(4), AMOUNT int(4), PRIMARY KEY(ID_NUM, C_ID))', []).catch(e => console.log(e));
             db.executeSql('CREATE TABLE IF NOT EXISTS WEAPONS(ID_NUM int(10), C_ID int(10), W_NAME character(32), DAMAGE character(6), TYPE character(12), RANGE int(4), CRITICAL character(6), W_WEIGHT int(4), W_AMOUNT int(4), PRIMARY KEY(ID_NUM, C_ID))', []).catch(e => console.log(e));
@@ -61,7 +61,7 @@ export class DatabaseProvider
     }
 
     updateStats(id, content){
-        this.db.executeSql('UPDATE STATS SET STRENGTH = ?, DEXTERITY = ?, CONSTITUTION = ?, INTELLIGENCE = ?, WISDOM = ?, CHARISMA = ?, MAX_HIT_POINTS = ?, HIT_POINTS = ?, BASE_ATTACK_BONUS = ?, PROFICIENCY_BONUS = ?, INSPIRATION = ? WHERE ID_NUM = ?',[content.Strength, content.Dexterity, content.Constitution, content.Intelligence, content.Wisdom, content.Charisma, content.max, content.hit, content.att_bonus, content.prof, content.insp, id]).catch(e => console.log(e));
+        this.db.executeSql('UPDATE STATS SET STRENGTH = ?, DEXTERITY = ?, CONSTITUTION = ?, INTELLIGENCE = ?, WISDOM = ?, CHARISMA = ?, MAX_HIT_POINTS = ?, HIT_POINTS = ?, BASE_ATTACK_BONUS = ?, PROFICIENCY_BONUS = ?, INSPIRATION = ?, SPEED = ?, LEVEL = ? WHERE ID_NUM = ?',[content.Strength, content.Dexterity, content.Constitution, content.Intelligence, content.Wisdom, content.Charisma, content.max, content.hit, content.att_bonus, content.prof, content.insp, content.speed, content.level, id]).catch(e => console.log(e));
 
 
     }
@@ -130,7 +130,9 @@ export class DatabaseProvider
                     hit: data.rows.item(i).HIT_POINTS,
                     att_bonus: data.rows.item(i).BASE_ATTACK_BONUS,
                     prof: data.rows.item(i).PROFICIENCY_BONUS,
-                    insp: data.rows.item(i).INSPIRATION
+                    insp: data.rows.item(i).INSPIRATION,
+                    speed: data.rows.item(i).SPEED,
+                    level: data.rows.item(i).LEVEL
                 });
             }
             return stuff;

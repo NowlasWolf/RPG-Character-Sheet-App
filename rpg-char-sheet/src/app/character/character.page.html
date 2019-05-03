@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-label slot="end" class="level">Level</ion-label>
-    <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" slot="end"></ion-input>
+    <ion-input type="text" inputmode="numeric" maxlength="3" placeholder="0" slot="end" [(ngModel)]="stats[0].level"(ngModelChange)="updatevalue('STATS')"></ion-input>
     <ion-title>
       {{character[0].Name}}
     </ion-title>
@@ -25,11 +25,11 @@
     </div>
     <div class="AContainer">
       AC
-      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"[(ngModel)]="bonuses.Dexterity"> </ion-input>
     </div>
     <div class="InitContainer">
       Initiative
-      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"[(ngModel)]="bonuses.Dexterity"> </ion-input>
     </div>
     </ion-item>
     <ion-item lines="none">
@@ -40,7 +40,7 @@
       </div>
     <div class="SpeedContainer">
       Speed
-      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"> </ion-input>
+      <ion-input type="text" inputmode="numeric" maxlength="2" placeholder="0" class="ACText"[(ngModel)]="stats[0].speed"(ngModelChange)="updatevalue('STATS')"> </ion-input>
     </div>
     <div class="InspirContainer">
         Inspiration
@@ -61,7 +61,7 @@
     </ion-item>
     </div>
     <div class="statsMod">
-      <ion-input type="text" inputmode="numeric" maxlength="2" class="statsText" placeholder="0"></ion-input>
+      <ion-input type="text" inputmode="numeric" maxlength="2" class="statsText" placeholder="0"[(ngModel)]="bonuses[item.name]"></ion-input>
     </div>
   </ion-list>
    <!-- <ion-label class= "skillLabel">

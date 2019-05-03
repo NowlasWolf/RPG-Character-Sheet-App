@@ -19,7 +19,6 @@ export class CharactersPage implements OnInit {
 			a.present().then(b => {
 				this.db.getCharacters().then(data => {
 					this.items = data;
-          console.log(this.items);
 					a.dismiss()
 				});
 			});

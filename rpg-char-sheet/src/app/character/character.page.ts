@@ -31,15 +31,14 @@ export class CharacterPage implements OnInit {
 		{name: "Charisma", stat: "20"}
       ];
       
-    this.bonuses = [
-      {name: "Strength", stat: null},
-		  {name: "Dexterity", stat: null},
-		  {name: "Constitution", stat: null},
-      {name: "Intelligence", stat: null},
-		  {name: "Wisdom", stat: null},
-		  {name: "Charisma", stat: null}
-
-    ]
+    this.bonuses = {
+        Strength: null,
+        Dexterity: null,
+        Constitution: null,
+        Intelligence: null,
+        Wisdom: null,
+        Charisma: null
+    };
 
     this.skills = [
     {name: "Acrobatics", stat: "20"},
@@ -72,11 +71,9 @@ export class CharacterPage implements OnInit {
         this.currentid = parseInt(id,10);
         this.db.getCharacterTable(this.currentid).then(data => {
           this.character = data;
-          console.log(this.character)
-          console.log(this.currentid);
           this.db.getStatTable(this.currentid).then(data => {
              this.stats = data;
-             //this.getbonus();
+             this.getbonus();
           })
           a.dismiss()
         });
@@ -85,21 +82,20 @@ export class CharacterPage implements OnInit {
   }
 
   getbonus(){
-      for(var i = 0; i < this.bonuses.length; i++){
-        var score = this.stats[this.bonuses[i].name]
+      for(var i = 0; i < 6; i++){
+        var score = this.stats[0][this.items[i].name]
         score = score - 10;
         score = score / 2;
         score = Math.floor(score);
-        this.bonuses[i].stat = score;
+        this.bonuses[this.items[i].name] = score;
       }
 
   }
 
   updatevalue(table){
-    console.log("Updating " + table);
     if(table == "STATS"){
       this.db.updateStats(this.currentid, this.stats[0]);
-      //this.getbonus()
+      this.getbonus()
     }
 
   }
